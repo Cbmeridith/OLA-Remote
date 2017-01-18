@@ -90,7 +90,7 @@ def populateLights():
   for i in range(0,NUM_LIGHTS):
     lights.append(Light(0,0,0,BRIGHTNESS_MAX,BRIGHTNESS_MAX))
   mode = MAX_MODE
-  fade = 0 ## Should be 1 ... change once working
+  fade = 1 
 
 
 
@@ -370,7 +370,7 @@ def movie():
   ## set purple accent and dim the lights
   mode = 2
   purple()
-  brightnessFade(resultBrightness, .05, .01) ## change to send in array for brighness values
+  brightnessFade(resultBrightness, .05, .01) 
 
   ## change top light to white
   mode = 1
@@ -615,7 +615,7 @@ def brightnessValues():
 ## fade between brightness values
 ## -----------------------------------------
 def brightnessFade(resultBrightness, step=None, delay=None):
-  global lights, BRIGHTNESS_MAX, NUM_LIGHTS
+  global lights, BRIGHTNESS_MAX, NUM_LIGHTS, fade
 
   print(resultBrightness)
   print(resultBrightness[0])
@@ -652,8 +652,11 @@ def brightnessFade(resultBrightness, step=None, delay=None):
       if abs(round(lights[i].getBrightness(),2)) != abs(round(resultBrightness[i],2)):
         done = "no"
 
-    ## don't care about fade value, right?
-    sendDMX()
+    ## Send values out
+    data = brightnessValues()
+    print("This is the data sent:  ")
+    print(data)
+    #client.SendDmx(universe, data, DmxSent) ##uncomment this to run on pi
 
     time.sleep(delay)
 
@@ -663,37 +666,61 @@ def brightnessFade(resultBrightness, step=None, delay=None):
 ## get fade array and send fade to dmx
 ## -----------------------------------------
 def fadeRun(numSteps, delay):
-  ## TODO / FIX
   global universe, client, NUM_LIGHTS, lights
 
-  sequence = array.array('B')
+  ## create lists for next step
+  currentLights = [] 
+  resultLights = []
+  difference = []
+  curBrightness = []
+
+  ## get all values needed in one big list
   for i in range(0,NUM_LIGHTS):
-    ##Try. supposed to create an array of arrays. hopefully not appending arrays to arrays
-    sequence.append(fadeArray(lights[i].getPrevRed(), lights[i].getRed(), numSteps)) 
-    sequence.append(fadeArray(lights[i].getPrevGreen(), lights[i].getGreen(), numSteps)) 
-    sequence.append(fadeArray(lights[i].getPrevBlue(), lights[i].getBlue(), numSteps)) 
+    currentLights.append(lights[i].getPrevRed())
+    currentLights.append(lights[i].getPrevGreen())
+    currentLights.append(lights[i].getPrevBlue())
+    resultLights.append(lights[i].getRed())
+    resultLights.append(lights[i].getGreen())
+    resultLights.append(lights[i].getBlue())
+    difference.append(lights[i].getPrevRed()-lights[i].getRed())
+    difference.append(lights[i].getPrevGreen()-lights[i].getGreen())
+    difference.append(lights[i].getPrevBlue()-lights[i].getBlue())
+    curBrightness.append(lights[i].getBrightness())
+    curBrightness.append(lights[i].getBrightness())
+    curBrightness.append(lights[i].getBrightness())
+
 
 
   ## Send fade sequences
   for j in range(0,numSteps-1):
     dmxToSend = array.array('B')
-    for i in range(0,NUM_LIGHTS):
-      dmxToSend.append(sequence[i][j])
 
-    data = brightnessValues(dmxToSend)
-    client.SendDmx(universe, data, DmxSent)
+    ## calculate what to send at each spot
+    for k in range(len(currentLights)):
+      step = float(j)/float(numSteps)*float(difference[k])
+      dmxToSend.append(brightnessValueCalculation(currentLights[k]-step,curBrightness[k]))
+
+    ## Make sure within bounds
+    for l in range(len(dmxToSend)):
+      if dmxToSend[l] > 255:
+        dmxToSend[l] = 255
+      elif dmxToSend[l] < 0:
+        dmxToSend[l] = 0
+
+    print("This is the data sent:  ")
+    print(dmxToSend)
+    #client.SendDmx(universe, dmxToSend, DmxSent) ##uncomment this to run on pi
     time.sleep(delay)
 
 
-  #send what value should be (in case fade sequence is off by a few)
-  dmxToSend = array.array('B')
-  for i in range(0,NUM_LIGHTS):
-    dmxToSend.append(lights[i].getRed())
-    dmxToSend.append(lights[i].getGreen())
-    dmxToSend.append(lights[i].getBlue())
+  ## send what value should be (in case fade sequence is off by a few)
+  data = array.array('B')
+  for i in range(len(currentLights)):
+    data.append(brightnessValueCalculation(resultLights[i], curBrightness[i]))
 
-  data = brightnessValues(dmxToSend)
-  client.SendDmx(universe, data, DmxSent)
+  print("This is the data sent:  ")
+  print(data) 
+  #client.SendDmx(universe, data, DmxSent) ##uncomment this to run on pi
 
 
 ## -----------------------------------------
@@ -759,4 +786,4 @@ def sendDMXFade():
 #defineVars()
 getValuesFromFile()
 getInput()
-#wrapper.Run()  ##uncomment this to run on pi
+#wrapper.Run()  ## Is this needed?
