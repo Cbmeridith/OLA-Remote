@@ -3,16 +3,19 @@
 ##       Written by: Cameron Anderson       ##
 ## -----------------------------------------##
 
+runOnPi = False
 
 ## import necessary libraries
 import time
 import math
 from array import array
 import array
-#from ola.ClientWrapper import ClientWrapper  ##uncomment this to run on pi
 from random import randint
 import sys
 import os.path
+if runOnPi:
+  from ola.ClientWrapper import ClientWrapper  ## Works on pi, but not computer
+
 
 ## -----------------------------------------
 ## idk what this does. It was in the example, so I kept it. 
@@ -27,8 +30,9 @@ def DmxSent(state):
 global universe, wrapper, client, MAX_MODE, NUM_LIGHTS, lights, mode, fade, BRIGHTNESS_MAX
 
 universe = 0
-#wrapper = ClientWrapper()  ##uncomment this to run on pi
-#client = wrapper.Client()  ##uncomment this to run on pi
+if runOnPi:
+  wrapper = ClientWrapper()  ## Works on pi, but not computer
+  client = wrapper.Client()  ## Works on pi, but not computer
 NUM_LIGHTS = 3   ## up to 170
 MAX_MODE = int(math.pow(2,NUM_LIGHTS)-1) ## maximum mode value 
 mode = MAX_MODE
@@ -120,26 +124,17 @@ class Light(object):
     self.prevG = g
     self.prevB = b
 
-  def brightnessUp(self):
-    global BRIGHTNESS_MAX
-    self.brightness = self.brightness+1
-    if self.brightness > BRIGHTNESS_MAX:
-      self.brightness = BRIGHTNESS_MAX
-
-  def brightnessDown(self):
-    self.brightness = self.brightness-1
-    if self.brightness < 0:
-      self.brightness = 0
-
   def increaseBrightness(self,step):
     self.brightness = self.brightness+step
     if self.brightness > BRIGHTNESS_MAX:
       self.brightness = BRIGHTNESS_MAX
+    return self.getBrightness()
 
   def decreaseBrightness(self,step):
     self.brightness = self.brightness-step
     if self.brightness < 0:
       self.brightness = 0
+    return self.getBrightness()
 
   def setBrightness(self,b):
     self.brightness = b
@@ -148,12 +143,9 @@ class Light(object):
     return self.brightness
 
   def saveBrightness(self):
-    if self.getBrightness() > 0.1:
+    if self.getBrightness() > 0.01:
       self.setPrevBrightness(self.getBrightness())
     #print("in saveBrightness .... current: "+str(self.getBrightness())+"   prev: "+str(self.getPrevBrightness()))
-
-  def resumeBrightness(self):
-    self.setBrightness(self.getPrevBrightness())
 
   def getPrevBrightness(self):
     return self.prevBrightness
@@ -202,7 +194,9 @@ def savePrevValues():
 def getInput():
   ##make sure there are enough args
   if len(sys.argv) < 2:
-    print("TOO FEW ARGS")
+    ## print("TOO FEW ARGS")
+    print("Refreshing")
+    sendDMX(brightnessValues())
     sys.exit()
 
   ##get code from command line args
@@ -405,7 +399,19 @@ def repeat():
 ## -----------------------------------------
 def setMode(newMode):
   global mode
-  mode = newMode
+  ## if mode is from 1-MAX_MODE
+  if newMode <= MAX_MODE and newMode > 0:
+    mode = newMode
+  ## if 0 control all lights
+  elif newMode == 0:
+    mode = MAX_MODE
+  ## if mode is less than 1 (below range)
+  elif newMode < 0:
+    mode = 1
+  ## if mode is above range
+  elif newMode > MAX_MODE:
+    mode = MAX_MODE
+
   print(mode)
   sendValuesToFile()
 
@@ -504,8 +510,9 @@ def allOn():
   ## IF light is currently off
   for i in range(0,NUM_LIGHTS):
     if lights[i].getBrightness() < 0.01 :
-      lights[i].resumeBrightness()
-    resultBrightness.append(lights[i].getBrightness())
+      resultBrightness.append(lights[i].getPrevBrightness())
+    else:
+      resultBrightness.append(lights[i].getBrightness())
 
   ## Turn off lights to prev brightness
   modeSave = mode
@@ -598,7 +605,7 @@ def brightnessValues():
 
   ## make sure brightness is non negative  ## IS THIS NEEDED?
   for i in range(0,NUM_LIGHTS):
-    if lights[i].getBrightness() < 0.1:
+    if lights[i].getBrightness() < 0.01:
       lights[i].setBrightness(0)
 
   dmxToSend = array.array('B')
@@ -621,8 +628,8 @@ def brightnessFade(resultBrightness, step=None, delay=None):
   print(resultBrightness[0])
 
   if step == None:
-    step = .05
-    delay = .0061
+    step = .05     ## Small enough step to not be jarring to see
+    delay = .0061  ## Trial and error, I like this delay
 
   ## set step to >= .01 (else rounding later on won't work right)
   if step < .01:
@@ -632,6 +639,7 @@ def brightnessFade(resultBrightness, step=None, delay=None):
   for i in range(0,NUM_LIGHTS):
     if resultBrightness[i] < 0.01:
       resultBrightness[i] = 0
+      print("Result brightness too low, setting result brightness to 0")
     if resultBrightness[i] > BRIGHTNESS_MAX:
       resultBrightness[i] = BRIGHTNESS_MAX
 
@@ -646,17 +654,16 @@ def brightnessFade(resultBrightness, step=None, delay=None):
       elif lights[i].getBrightness() > resultBrightness[i]:
         lights[i].decreaseBrightness(step)
 
+
     ## exit loop -- using string to compare correctly, rounding and abs to fix math errors
     done = "yes"
     for i in range(0,NUM_LIGHTS):
-      if abs(round(lights[i].getBrightness(),2)) != abs(round(resultBrightness[i],2)):
+      if abs(round(lights[i].getBrightness(),3)) != abs(round(resultBrightness[i],3)):
         done = "no"
 
     ## Send values out
     data = brightnessValues()
-    print("This is the data sent:  ")
-    print(data)
-    #client.SendDmx(universe, data, DmxSent) ##uncomment this to run on pi
+    sendDMX(data)
 
     time.sleep(delay)
 
@@ -674,7 +681,7 @@ def fadeRun(numSteps, delay):
   difference = []
   curBrightness = []
 
-  ## get all values needed in one big list
+  ## get all values needed in one big list (format that is needed)
   for i in range(0,NUM_LIGHTS):
     currentLights.append(lights[i].getPrevRed())
     currentLights.append(lights[i].getPrevGreen())
@@ -709,7 +716,7 @@ def fadeRun(numSteps, delay):
 
     print("This is the data sent:  ")
     print(dmxToSend)
-    #client.SendDmx(universe, dmxToSend, DmxSent) ##uncomment this to run on pi
+    sendDMX(dmxToSend)
     time.sleep(delay)
 
 
@@ -720,7 +727,7 @@ def fadeRun(numSteps, delay):
 
   print("This is the data sent:  ")
   print(data) 
-  #client.SendDmx(universe, data, DmxSent) ##uncomment this to run on pi
+  sendDMX(data)
 
 
 ## -----------------------------------------
@@ -764,16 +771,18 @@ def setValues(R,G,B,light=None):
 ## -----------------------------------------
 ## Send the current values -- Call fade if necessary
 ## -----------------------------------------
-def sendDMX():
+def sendDMX(data=None):
   global universe, client, fade
 
-  if fade == 1:
+  if fade == 1 and data==None:
     sendDMXFade()
 
-  data = brightnessValues()
+  if data is None:
+    data = brightnessValues()
   print("This is the data sent:  ")
   print(data)
-  #client.SendDmx(universe, data, DmxSent) ##uncomment this to run on pi
+  if runOnPi:
+    client.SendDmx(universe, data, DmxSent) ## Works on pi, but not computer
 
 def sendDMXFade():
   fadeRun(40, 0.007)
