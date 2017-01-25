@@ -27,7 +27,7 @@ def DmxSent(state):
 ## define global variables and set initial values
 ## -----------------------------------------
 #def defineVars():
-global universe, wrapper, client, MAX_MODE, NUM_LIGHTS, lights, mode, fade, BRIGHTNESS_MAX
+global universe, wrapper, client, mode, lights, fade, MAX_MODE, NUM_LIGHTS, BRIGHTNESS_MAX
 
 universe = 0
 if runOnPi:
@@ -44,7 +44,7 @@ BRIGHTNESS_MAX = 18.0
 ## get variables from save file
 ## -----------------------------------------
 def getValuesFromFile():
-  global NUM_LIGHTS, lights, mode, fade
+  global mode, lights, fade, NUM_LIGHTS
   ## get light values from files. 
 
   ## does file exist
@@ -70,7 +70,7 @@ def getValuesFromFile():
 ## save variables to file
 ## -----------------------------------------
 def sendValuesToFile():
-  global NUM_LIGHTS, lights, mode, fade
+  global mode, lights, fade, NUM_LIGHTS
 
   linesOfText = [str(NUM_LIGHTS), "\n", str(mode), "\n", str(fade), "\n"]
   for i in range(0,NUM_LIGHTS):
@@ -87,7 +87,7 @@ def sendValuesToFile():
 ## populate variables with default values
 ## -----------------------------------------
 def populateLights():
-  global NUM_LIGHTS, lights, mode, fade
+  global mode, lights, fade, NUM_LIGHTS
 
   print("in populateLights()")
 
@@ -145,7 +145,6 @@ class Light(object):
   def saveBrightness(self):
     if self.getBrightness() > 0.01:
       self.setPrevBrightness(self.getBrightness())
-    #print("in saveBrightness .... current: "+str(self.getBrightness())+"   prev: "+str(self.getPrevBrightness()))
 
   def getPrevBrightness(self):
     return self.prevBrightness
@@ -264,8 +263,8 @@ def getInput():
       print("TOO FEW ARGS")
       sys.exit()
 
-    l1 = sys.argv[2]
-    l2 = sys.argv[3]
+    l1 = int(sys.argv[2])
+    l2 = int(sys.argv[3])
     swap(l1, l2)
 
   if str(code) == "Repeat":
@@ -381,9 +380,13 @@ def randomColors():
 ## -----------------------------------------
 ## sends random colors to the lights
 ## -----------------------------------------
-def swap():
+def swap(l1,l2):
   print("TODO")
 
+  light1 = [lights[l1].getRed(),lights[l1].getGreen(),lights[l1].getBlue()]
+  setValues(lights[l2].getRed(),lights[l2].getGreen(),lights[l2].getBlue(),l1)
+  setValues(light1[0],light1[1],light1[2],l2)
+  sendDMX()
 
 
 ## -----------------------------------------
@@ -429,7 +432,7 @@ def fadeToggle():
 ## turns lights off based on mode
 ## -----------------------------------------
 def off():
-  global lights, NUM_LIGHTS, mode
+  global mode, lights, NUM_LIGHTS
   ## create resultBrightness list
   resultBrightness = []
   ## Save current brightness to light.prevBrightness
@@ -453,14 +456,14 @@ def off():
 ## turns all lights off 
 ## -----------------------------------------
 def allOff():
-  global lights, NUM_LIGHTS, mode
+  global mode, lights, NUM_LIGHTS
 
   resultBrightness = []
 
   ## Save current brightnesses to light.prevBrightness
   ## UNLESS already 0, then leave alone
   for i in range(0,NUM_LIGHTS):
-    if lights[i].getBrightness > 0.01:
+    if lights[i].getBrightness() > 0.01:
       lights[i].saveBrightness()
     resultBrightness.append(0)
 
@@ -476,7 +479,7 @@ def allOff():
 ## turns lights on based on mode
 ## -----------------------------------------
 def on():
-  global lights, NUM_LIGHTS, mode
+  global mode, lights, NUM_LIGHTS
   ## create resultBrightness list
   resultBrightness = []
 
@@ -502,7 +505,7 @@ def on():
 ## turns all lights on to previous brightness
 ## -----------------------------------------
 def allOn():
-  global lights, NUM_LIGHTS, mode
+  global mode, lights, NUM_LIGHTS
 
   resultBrightness = []
 
@@ -526,7 +529,7 @@ def allOn():
 ## turns all lights on to full brightness
 ## -----------------------------------------
 def allOnFull():
-  global lights, NUM_LIGHTS, mode
+  global mode, lights, NUM_LIGHTS
 
   resultBrightness = []
 
@@ -551,7 +554,7 @@ def allOnFull():
 ## turn brightness up and down
 ## -----------------------------------------
 def brightnessUp():
-  global lights, mode, NUM_LIGHTS
+  global mode, lights, NUM_LIGHTS
 
   brightnessToSend = array.array('f')
 
@@ -571,7 +574,7 @@ def brightnessUp():
 
 
 def brightnessDown():
-  global lights, mode, NUM_LIGHTS
+  global mode, lights, NUM_LIGHTS
 
   brightnessToSend = array.array('f')
 
@@ -595,7 +598,7 @@ def brightnessDown():
 ## return brightness values 
 ## -----------------------------------------
 def brightnessValueCalculation(curValue, curBrightness):
-  global lights, BRIGHTNESS_MAX, NUM_LIGHTS
+  global lights, NUM_LIGHTS, BRIGHTNESS_MAX
   #y = (brightness1 / BRIGHTNESS_MAX * x)   ## linear brightness levels
   y = curValue*(1-math.log10(1+(0.5*abs(curBrightness-BRIGHTNESS_MAX))))   ## logarithmic brightness levels
   return int(y)
@@ -622,7 +625,7 @@ def brightnessValues():
 ## fade between brightness values
 ## -----------------------------------------
 def brightnessFade(resultBrightness, step=None, delay=None):
-  global lights, BRIGHTNESS_MAX, NUM_LIGHTS, fade
+  global lights, fade, NUM_LIGHTS, BRIGHTNESS_MAX
 
   print(resultBrightness)
   print(resultBrightness[0])
@@ -673,7 +676,7 @@ def brightnessFade(resultBrightness, step=None, delay=None):
 ## get fade array and send fade to dmx
 ## -----------------------------------------
 def fadeRun(numSteps, delay):
-  global universe, client, NUM_LIGHTS, lights
+  global universe, client, lights, NUM_LIGHTS
 
   ## create lists for next step
   currentLights = [] 
