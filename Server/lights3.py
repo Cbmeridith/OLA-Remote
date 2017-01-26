@@ -98,7 +98,6 @@ def populateLights():
 
 
 
-
 ## -----------------------------------------
 ## create light object
 ## -----------------------------------------
@@ -180,11 +179,15 @@ class Light(object):
   def getPrevBlue(self):
     return self.prevB
 
-## Save previous light values
+
+## -----------------------------------------
+## Save current values to previous of all lights
+## -----------------------------------------
 def savePrevValues():
   global lights, NUM_LIGHTS
   for i in range(0,NUM_LIGHTS):
     lights[i].saveValues()
+
 
 
 ## -----------------------------------------
@@ -206,58 +209,58 @@ def getInput():
   if str(code) == "Off":
     off()
 
-  if str(code) == "AllOff":
+  elif str(code) == "AllOff":
     allOff()
 
-  if str(code) == "On":
+  elif str(code) == "On":
     on()
 
-  if str(code) == "AllOn":
+  elif str(code) == "AllOn":
     allOn()
 
-  if str(code) == "AllOnFull":
+  elif str(code) == "AllOnFull":
     allOnFull()
 
-  if str(code) == "White":
+  elif str(code) == "White":
     white()
 
-  if str(code) == "SoftWhite":
+  elif str(code) == "SoftWhite":
     softWhite()
 
-  if str(code) == "Red":
+  elif str(code) == "Red":
     red()
 
-  if str(code) == "Green":
+  elif str(code) == "Green":
     green()
 
-  if str(code) == "Blue":
+  elif str(code) == "Blue":
     blue()
 
-  if str(code) == "Orange":
+  elif str(code) == "Orange":
     orange()
 
-  if str(code) == "Yellow":
+  elif str(code) == "Yellow":
     yellow()
 
-  if str(code) == "Cyan":
+  elif str(code) == "Cyan":
     cyan()
 
-  if str(code) == "Purple":
+  elif str(code) == "Purple":
     purple()
 
-  if str(code) == "BrightnessUp":
+  elif str(code) == "BrightnessUp":
     brightnessUp()
 
-  if str(code) == "BrightnessDown":
+  elif str(code) == "BrightnessDown":
     brightnessDown()
 
-  if str(code) == "Movie":
+  elif str(code) == "Movie":
     movie()
 
-  if str(code) == "Random":
+  elif str(code) == "Random":
     randomColors()
 
-  if str(code) == "Swap":
+  elif str(code) == "Swap":
     ##make sure there are enough args
     if len(sys.argv) < 3:
       print("TOO FEW ARGS")
@@ -267,13 +270,10 @@ def getInput():
     l2 = int(sys.argv[3])
     swap(l1, l2)
 
-  if str(code) == "Repeat":
-    repeat()
-
-  if str(code) == "Fade":
+  elif str(code) == "Fade":
     fadeToggle()
 
-  if str(code) == "Mode":
+  elif str(code) == "Mode":
     ##make sure there are enough args
     if len(sys.argv) < 3:
       print("TOO FEW ARGS")
@@ -283,7 +283,7 @@ def getInput():
     
     setMode(newMode)
 
-  if str(code) == "Set":
+  elif str(code) == "Set":
     ##make sure there are enough args
     if len(sys.argv) < 5:
       print("TOO FEW ARGS")
@@ -295,6 +295,9 @@ def getInput():
     B = int(sys.argv[4])
     setValues(R,G,B)
     sendDMX()
+
+  else:
+    print("CODE DOES NOT MATCH ANY ARGUMENT")
 
 
 ## -----------------------------------------
@@ -374,31 +377,78 @@ def movie():
 ## sends random colors to the lights
 ## -----------------------------------------
 def randomColors():
-  print("TODO")
+  ## essentially chooses a start point on the outside of the color wheel 
+  ## and draws a regular polygon of NUM_LiGHTS sides
+  ## each point of the polygon is then a color displayed
+
+  degree = randint(0,360)
+  degChange = 360 / NUM_LIGHTS
+
+  for i in range(NUM_LIGHTS):
+    color = degToRGB(degree)
+    setValues(color[0],color[1],color[2],i)
+    degree = (degree + degChange)%360
+
+  sendDMX()
 
 
 ## -----------------------------------------
-## sends random colors to the lights
+## helper function to Random()
+## -----------------------------------------
+def degToRGB(deg):
+  ## pure red   = 0 / 360  [255,0,0]
+  ## pure green = 120      [0,255,0]
+  ## pure blue  = 240      [0,0,255]
+  ## yellow     = 60       [255,255,0]
+  ## cyan       = 180      [0,255,255]
+  ## magenta    = 300      [255,0,255]
+
+  r=0
+  g=0
+  b=0
+
+  ## red area
+  if (deg > 300) or (deg <= 60):
+    r=255
+    if deg > 300: ## has blue
+      b = 255 - ((deg - 300) * (255.0/60))
+    if deg < 60: ## has green
+      g = deg * (255.0/60)
+  ## green area
+  if (deg > 60) and (deg <= 180):
+    g=255
+    if deg < 120: ## has red
+      r = 255 - ((deg - 60) * (255.0/60))
+    if deg > 120: ## has blue
+      b = (deg - 120) * (255.0/60)
+
+  ## blue area
+  if (deg > 180) and (deg <= 300):
+    b=255
+    if deg < 240: ## has green
+      g = 255 - ((deg - 180) * (255.0/60))
+    if deg > 240: ## has red
+      r = (deg - 240) * (255.0/60)
+
+  return [int(r),int(g),int(b)]
+
+
+
+## -----------------------------------------
+## swaps values of two specified lights
 ## -----------------------------------------
 def swap(l1,l2):
-  print("TODO")
 
+  ## save first light values, then swap
   light1 = [lights[l1].getRed(),lights[l1].getGreen(),lights[l1].getBlue()]
   setValues(lights[l2].getRed(),lights[l2].getGreen(),lights[l2].getBlue(),l1)
   setValues(light1[0],light1[1],light1[2],l2)
   sendDMX()
 
 
-## -----------------------------------------
-## repeats pattern entered on remote
-## -----------------------------------------
-def repeat():
-  print("TODO")
-
-
 
 ## -----------------------------------------
-## mode and fade toggle
+## set the mode for the lights
 ## -----------------------------------------
 def setMode(newMode):
   global mode
@@ -419,7 +469,9 @@ def setMode(newMode):
   sendValuesToFile()
 
 
-
+## -----------------------------------------
+## Toggle Fade on and off
+## -----------------------------------------
 def fadeToggle():
   global fade
   fade = (fade + 1) % 2
@@ -551,7 +603,7 @@ def allOnFull():
 ## -----------------------------------------
 ## - - - - - - - - - - - - - - - - - - - - -
 ## -----------------------------------------
-## turn brightness up and down
+## turn brightness up 1 step
 ## -----------------------------------------
 def brightnessUp():
   global mode, lights, NUM_LIGHTS
@@ -573,6 +625,9 @@ def brightnessUp():
   sendValuesToFile()
 
 
+## -----------------------------------------
+## turn brightness down 1 step
+## -----------------------------------------
 def brightnessDown():
   global mode, lights, NUM_LIGHTS
 
@@ -595,7 +650,7 @@ def brightnessDown():
 
 
 ## -----------------------------------------
-## return brightness values 
+## brightness calculation
 ## -----------------------------------------
 def brightnessValueCalculation(curValue, curBrightness):
   global lights, NUM_LIGHTS, BRIGHTNESS_MAX
@@ -603,6 +658,9 @@ def brightnessValueCalculation(curValue, curBrightness):
   y = curValue*(1-math.log10(1+(0.5*abs(curBrightness-BRIGHTNESS_MAX))))   ## logarithmic brightness levels
   return int(y)
 
+## -----------------------------------------
+## adjust light values for brightness
+## -----------------------------------------
 def brightnessValues():
   global lights
 
