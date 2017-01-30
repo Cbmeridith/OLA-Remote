@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		035193D41DC10497005C415B /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035193D31DC10497005C415B /* ColorPickerViewController.swift */; };
+		0398DB401DC6784200D4FE41 /* PiStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0398DB3F1DC6784200D4FE41 /* PiStream.swift */; };
+		0398DB421DC6813F00D4FE41 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0398DB411DC6813F00D4FE41 /* MainViewController.swift */; };
+		03C01FD71DC6CB6B00C51F53 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C01FD61DC6CB6B00C51F53 /* Colors.plist */; };
+		03C01FD91DC79FDB00C51F53 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C01FD81DC79FDB00C51F53 /* SettingsViewController.swift */; };
+		03C01FDB1DC7A19300C51F53 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C01FDA1DC7A19300C51F53 /* Settings.plist */; };
 		03C9D8DE1DBE7A6A00A6745C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */; };
-		03C9D8E01DBE7A6A00A6745C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D8DF1DBE7A6A00A6745C /* FirstViewController.swift */; };
-		03C9D8E21DBE7A6A00A6745C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D8E11DBE7A6A00A6745C /* SecondViewController.swift */; };
 		03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E31DBE7A6A00A6745C /* Main.storyboard */; };
 		03C9D8E71DBE7A6A00A6745C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */; };
 		03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */; };
@@ -18,10 +21,13 @@
 
 /* Begin PBXFileReference section */
 		035193D31DC10497005C415B /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		0398DB3F1DC6784200D4FE41 /* PiStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiStream.swift; sourceTree = "<group>"; };
+		0398DB411DC6813F00D4FE41 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		03C01FD61DC6CB6B00C51F53 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
+		03C01FD81DC79FDB00C51F53 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		03C01FDA1DC7A19300C51F53 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		03C9D8DA1DBE7A6A00A6745C /* Pi-Mote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pi-Mote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		03C9D8DF1DBE7A6A00A6745C /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		03C9D8E11DBE7A6A00A6745C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		03C9D8E41DBE7A6A00A6745C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C9D8E91DBE7A6A00A6745C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -42,6 +48,7 @@
 		03C9D8D11DBE7A6A00A6745C = {
 			isa = PBXGroup;
 			children = (
+				0398DB3F1DC6784200D4FE41 /* PiStream.swift */,
 				03C9D8DC1DBE7A6A00A6745C /* Pi-Mote */,
 				03C9D8DB1DBE7A6A00A6745C /* Products */,
 			);
@@ -58,14 +65,16 @@
 		03C9D8DC1DBE7A6A00A6745C /* Pi-Mote */ = {
 			isa = PBXGroup;
 			children = (
+				0398DB411DC6813F00D4FE41 /* MainViewController.swift */,
 				03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */,
-				03C9D8DF1DBE7A6A00A6745C /* FirstViewController.swift */,
-				03C9D8E11DBE7A6A00A6745C /* SecondViewController.swift */,
 				03C9D8E31DBE7A6A00A6745C /* Main.storyboard */,
 				035193D31DC10497005C415B /* ColorPickerViewController.swift */,
 				03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */,
 				03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */,
 				03C9D8EB1DBE7A6A00A6745C /* Info.plist */,
+				03C01FD61DC6CB6B00C51F53 /* Colors.plist */,
+				03C01FD81DC79FDB00C51F53 /* SettingsViewController.swift */,
+				03C01FDA1DC7A19300C51F53 /* Settings.plist */,
 			);
 			path = "Pi-Mote";
 			sourceTree = "<group>";
@@ -97,7 +106,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Cody Meridith";
 				TargetAttributes = {
 					03C9D8D91DBE7A6A00A6745C = {
@@ -131,9 +140,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C01FD71DC6CB6B00C51F53 /* Colors.plist in Resources */,
 				03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */,
 				03C9D8E71DBE7A6A00A6745C /* Assets.xcassets in Resources */,
 				03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */,
+				03C01FDB1DC7A19300C51F53 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,9 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				035193D41DC10497005C415B /* ColorPickerViewController.swift in Sources */,
-				03C9D8E21DBE7A6A00A6745C /* SecondViewController.swift in Sources */,
 				03C9D8DE1DBE7A6A00A6745C /* AppDelegate.swift in Sources */,
-				03C9D8E01DBE7A6A00A6745C /* FirstViewController.swift in Sources */,
+				0398DB401DC6784200D4FE41 /* PiStream.swift in Sources */,
+				03C01FD91DC79FDB00C51F53 /* SettingsViewController.swift in Sources */,
+				0398DB421DC6813F00D4FE41 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +203,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -240,6 +253,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

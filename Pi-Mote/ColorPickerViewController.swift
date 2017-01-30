@@ -12,7 +12,9 @@ import UIKit
 class ColorPickerViewController: UIViewController
 {
     
-    @IBOutlet weak var lblColorPicker: UILabel!
+    let pi = PiStream()
+    var pathToSettings: String!
+    var settings: NSMutableDictionary!
     
     var wheelCenter: CGPoint!
     var wheelOutline: CAShapeLayer!
@@ -23,12 +25,18 @@ class ColorPickerViewController: UIViewController
     var xCenter: CGFloat!
     var yCenter: CGFloat!
     
+    @IBOutlet weak var fieldR: UITextField!
+    @IBOutlet weak var fieldG: UITextField!
+    @IBOutlet weak var fieldB: UITextField!
+    @IBOutlet weak var buttonSend: UIButton!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        buttonSend.isHidden = true
         xCenter = self.view.frame.size.width / 2
         yCenter = self.view.frame.size.height / 2
-        wheelRadius = CGFloat(180)
+        wheelRadius = CGFloat(175)
         zoomRadius = CGFloat(35)
         
         wheelCenter = CGPoint(x: xCenter, y: yCenter)
@@ -50,8 +58,19 @@ class ColorPickerViewController: UIViewController
 
         view.layer.addSublayer(wheelOutline)
         view.layer.addSublayer(zoom)
-
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        pathToSettings = Bundle.main.path(forResource: "Settings", ofType: "plist")
+        settings = NSMutableDictionary(contentsOfFile: pathToSettings!)
+        
+        pi.IP = settings?.value(forKey: "Address") as? String
+        pi.openConnection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        pi.closeConnection()
     }
     
     override func didReceiveMemoryWarning()
@@ -138,6 +157,35 @@ class ColorPickerViewController: UIViewController
         
     }
     
+    func isValidRGB() -> Bool
+    {
+        let fieldRLength = fieldR.text?.characters.count
+        let fieldGLength = fieldG.text?.characters.count
+        let fieldBLength = fieldB.text?.characters.count
+        
+        return (fieldRLength! > 0 && fieldGLength! > 0 && fieldBLength! > 0)
+    }
+    
+    func sendRGB()
+    {
+        //must force r,g,b to be non-optional through if-binding
+        if let r = fieldR.text, let g = fieldG.text, let b = fieldB.text {
+            var RGB = [r, g, b]
+            var code = ""
+            for i in 0..<RGB.count
+            {
+                switch RGB[i].characters.count
+                {
+                case 1: RGB[i] = "00\(RGB[i])"; break;
+                case 2: RGB[i] = "0\(RGB[i])"; break;
+                default: break;
+                }
+                code = "\(code)\(RGB[i])"
+            }
+            pi.sendCode(code: code, length: code.characters.count)
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         if let touch = touches.first
@@ -146,10 +194,14 @@ class ColorPickerViewController: UIViewController
             if inCircle(position: position)
             {
                 let RGB = calculateRGB(position: position)
-                
-                lblColorPicker.textColor = UIColor(red: CGFloat(RGB[0]) / 255, green: CGFloat(RGB[1]) / 255, blue: CGFloat(RGB[2]) / 255, alpha: 1)
+                fieldR.text = String(RGB[0])
+                fieldG.text = String(RGB[1])
+                fieldB.text = String(RGB[2])
             }
         }
+        
+        buttonSend.isHidden = true
+        sendRGB()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -161,18 +213,50 @@ class ColorPickerViewController: UIViewController
             {
                 let RGB = calculateRGB(position: position)
                 
-                let currentColor = UIColor(red: CGFloat(RGB[0]) / 255, green: CGFloat(RGB[1]) / 255, blue: CGFloat(RGB[2]) / 255, alpha: 1)
+                fieldR.text = String(RGB[0])
+                fieldG.text = String(RGB[1])
+                fieldB.text = String(RGB[2])
                 
-                lblColorPicker.textColor = currentColor
+                let currentColor = UIColor(red: CGFloat(RGB[0]) / 255, green: CGFloat(RGB[1]) / 255, blue: CGFloat(RGB[2]) / 255, alpha: 1)
                 
                 zoom.position.x = position.x
                 zoom.position.y = position.y - (zoomRadius * 2)
                 zoom.fillColor = currentColor.cgColor
                 zoom.isHidden = false
-                
             }
         }
+        
+        buttonSend.isHidden = true
+        sendRGB()
+        
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        zoom.isHidden = true
+    }
+    
+    @IBAction func editingBegan(_ sender: UITextField) {
+        buttonSend.isHidden = !isValidRGB()
+    }
+    
+    @IBAction func editingChanged(_ sender: UITextField) {
+        let fieldText = sender.text
+        let textLength = (sender.text?.characters.count)!
+        //check textLength first to avoid exception on Int cast
+        if textLength > 0 && (textLength > 3 || Int(fieldText!)! > 255)
+        {
+            sender.text = fieldText?.substring(to: (fieldText?.index(before: (fieldText?.endIndex)!))!)
+        }
+        buttonSend.isHidden = !isValidRGB()
+    }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        
+        if sender == buttonSend && isValidRGB()
+        {
+            sendRGB()
+        }
+        
+    }
     
 }
