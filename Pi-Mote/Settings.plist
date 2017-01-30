@@ -4,6 +4,8 @@
 <dict>
 	<key>Address</key>
 	<string>192.168.1.104</string>
+	<key>Test</key>
+	<string>-1</string>
 	<key>HapticStrength</key>
 	<string>3</string>
 </dict>

@@ -20,6 +20,8 @@
 	<string>255139039</string>
 	<key>White</key>
 	<string>255255255</string>
+	<key>Test</key>
+	<string>000000000</string>
 	<key>Yellow</key>
 	<string>255139039</string>
 </dict>
