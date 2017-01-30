@@ -43,6 +43,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        buttonLight0.backgroundColor = UIColor.lightGray;
+        buttonLight1.backgroundColor = UIColor.lightGray;
+        buttonLight2.backgroundColor = UIColor.lightGray;
+        buttonLight3.backgroundColor = UIColor.lightGray;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,8 +66,8 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func flipLight(i: Int) {
-        lights[i] = !lights[i]
+    func setLight(i: Int, on: Bool) {
+        lights[i] = on
         if lights[i] {
             switch i {
                 case 0: buttonLight0.backgroundColor = UIColor.gray; break;
@@ -84,17 +88,24 @@ class MainViewController: UIViewController {
         }
     }
     
-    func turnOnAllModeButtons() {
-        for i in 0...lights.count - 1 {
-            lights[i] = true
+    func flipAllModeButtons() {
+        var on = false
+        if lights[lights.count - 1] {
+            on = true
         }
+        
+        for i in 0...lights.count - 1 {
+            setLight(i: i, on: on)
+        }
+        
+        
     }
 
     func calculateMode() -> String {
 
         var binaryMode = ""
-        for i in 0...lights.count - 1 {
-            if lights[lights.count - (1 + i)] {
+        for i in 0...lights.count - 2 {
+            if lights[lights.count - (2 + i)] {
                 binaryMode += "1"
             }
             else {
@@ -102,10 +113,9 @@ class MainViewController: UIViewController {
             }
         }
         
-        print("binary mode: \(binaryMode)")
         if let decMode = Int(binaryMode, radix: 2) {
-            print("dec mode: \(decMode)")
-            return String(decMode)
+            print(decMode)
+            return "MODE\(decMode)"
         }
         return "ERROR"
     }
@@ -124,10 +134,10 @@ class MainViewController: UIViewController {
             case buttonCyan: code = colors?.value(forKey: "Cyan") as! String; break
             case buttonFlux: code = "FLUX"; break
             case buttonGreen: code = colors?.value(forKey: "Green") as! String; break
-            case buttonLight0: flipLight(i: 0); code = calculateMode(); break
-            case buttonLight1: flipLight(i: 1); code = calculateMode(); break
-            case buttonLight2: flipLight(i: 2); code = calculateMode(); break
-            case buttonLight3: flipLight(i: 3); turnOnAllModeButtons(); code = calculateMode(); break
+            case buttonLight0: setLight(i: 0, on: !lights[0]); code = calculateMode(); break
+            case buttonLight1: setLight(i: 1, on: !lights[1]); code = calculateMode(); break
+            case buttonLight2: setLight(i: 2, on: !lights[2]); code = calculateMode(); break
+            case buttonLight3: setLight(i: 3, on: !lights[3]); flipAllModeButtons(); code = calculateMode(); break
             case buttonMovie: code = "MOVIE"; break
             case buttonOff: code = "OFF"; break
             case buttonOn: code = "ON"; break
@@ -145,7 +155,7 @@ class MainViewController: UIViewController {
             
         }
                 
-        //pi.sendCode(code: code, length: code.characters.count)
+        pi.sendCode(code: code, length: code.characters.count)
     }
 /*
     @IBAction func selectedSegmentChanged(_ sender: UISegmentedControl) {
