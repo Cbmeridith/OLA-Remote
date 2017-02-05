@@ -25,72 +25,73 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kap-9J-Uac">
                                 <rect key="frame" x="94" y="330" width="94" height="96"/>
-                                <state key="normal" image="Green"/>
+                                <color key="backgroundColor" red="0.0037006056949875354" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="V3r-jM-EOs"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="iA4-ck-fgx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzC-VZ-Lsp">
                                 <rect key="frame" x="0.0" y="330" width="94" height="96"/>
-                                <state key="normal" image="Red"/>
+                                <color key="backgroundColor" red="1" green="0.038993868052433989" blue="0.086536248760863965" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="oVZ-as-hWE"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="sXV-hV-gfo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTf-su-1lo">
                                 <rect key="frame" x="188" y="330" width="94" height="96"/>
-                                <state key="normal" image="Blue"/>
+                                <color key="backgroundColor" red="0.0" green="0.031326614117045182" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="osf-Ma-gUc"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="6Ny-uI-cdx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRH-Zb-qma">
                                 <rect key="frame" x="94" y="426" width="94" height="96"/>
-                                <state key="normal" image="Purple"/>
+                                <color key="backgroundColor" red="0.59332232227534298" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="h6g-Qs-4wo"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="8F0-n5-Wdw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-ie-zfK">
                                 <rect key="frame" x="0.0" y="426" width="94" height="96"/>
-                                <state key="normal" image="Orange"/>
+                                <color key="backgroundColor" red="1" green="0.5219459233204391" blue="0.046178846180751854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="z1x-ih-aB3"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="TEc-eO-NGf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDh-yt-9ez">
                                 <rect key="frame" x="188" y="426" width="94" height="96"/>
-                                <state key="normal" image="Cyan"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.99063824445722393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="b6L-LH-JkF"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="y7B-Ak-mxa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-QV-dm8">
                                 <rect key="frame" x="94" y="522" width="94" height="96"/>
-                                <state key="normal" image="Pink"/>
+                                <color key="backgroundColor" red="0.9760972798957761" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="g9i-bO-5G2"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="IZT-al-27r"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-th-eLZ">
                                 <rect key="frame" x="0.0" y="522" width="94" height="96"/>
-                                <state key="normal" image="Yellow"/>
+                                <color key="backgroundColor" red="1" green="0.96954255705544834" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Xsc-bV-NMF"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="rh8-pP-KPP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FS4-Mc-P3h">
                                 <rect key="frame" x="188" y="522" width="94" height="96"/>
-                                <state key="normal" title="SFT WHT" image="White"/>
+                                <color key="backgroundColor" red="0.97871919949185193" green="0.98956348623531976" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="SFT WHT"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="vxD-Rt-6rW"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="LAA-Ho-JRV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00L-qW-Xrd">
                                 <rect key="frame" x="282" y="426" width="94" height="96"/>
                                 <state key="normal" image="BrightUp"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="74a-ob-SXg"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="WTx-NM-57O"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oex-Sf-W60">
@@ -109,37 +110,30 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mS-53-Ehl">
                                 <rect key="frame" x="282" y="330" width="94" height="96"/>
-                                <state key="normal" image="SoftWhite"/>
+                                <color key="backgroundColor" red="1" green="0.97042462378583716" blue="0.87950044890751611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="yMe-Su-5v4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hej-7N-aJh">
-                                <rect key="frame" x="282" y="90" width="94" height="96"/>
-                                <state key="normal" image="Flux"/>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="CG7-ZE-RrA"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="lJL-Mk-xqm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qY-U7-zDa">
                                 <rect key="frame" x="188" y="90" width="94" height="96"/>
                                 <state key="normal" image="Rand"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="48P-Dc-fJ1"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ats-pO-TOR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uak-SB-GUc">
                                 <rect key="frame" x="94" y="90" width="94" height="96"/>
                                 <state key="normal" image="Swap"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ZMe-TW-OBg"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="uTz-TF-X5W"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-nX-MDK">
                                 <rect key="frame" x="0.0" y="90" width="94" height="96"/>
                                 <state key="normal" image="Movie"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="DO7-CV-2l5"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="4LQ-UV-Cbz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROt-tX-a5g">
@@ -147,35 +141,42 @@
                                 <color key="backgroundColor" red="0.79369737694300513" green="0.79369737694300513" blue="0.79369737694300513" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="1"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7cO-NM-u4t"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="2eD-P0-OyF"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcY-uF-V3M">
                                 <rect key="frame" x="94" y="186" width="94" height="48"/>
                                 <state key="normal" title="2"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="kun-Ze-Ms7"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="5hb-oe-fnh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cua-A9-BCl">
                                 <rect key="frame" x="188" y="186" width="94" height="48"/>
                                 <state key="normal" title="3"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="t28-pO-YdI"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="GnE-xc-0QD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRc-NV-0er">
                                 <rect key="frame" x="282" y="186" width="94" height="48"/>
                                 <state key="normal" title="All"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="8TQ-dZ-LJD"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Vz2-S6-yD5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsC-6K-q2d">
                                 <rect key="frame" x="282" y="522" width="94" height="96"/>
                                 <state key="normal" image="BrightDown"/>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="85n-W6-XwL"/>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="F6H-co-P0S"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hej-7N-aJh">
+                                <rect key="frame" x="282" y="90" width="94" height="96"/>
+                                <state key="normal" image="Flux"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ywI-Zg-oit"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -273,28 +274,28 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home" selectedImage="Home" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="buttonBlue" destination="RTf-su-1lo" id="77r-aE-1yp"/>
-                        <outlet property="buttonBrightDown" destination="WsC-6K-q2d" id="pUU-ep-aCj"/>
-                        <outlet property="buttonBrightUp" destination="00L-qW-Xrd" id="eJJ-ue-mVj"/>
-                        <outlet property="buttonCyan" destination="DDh-yt-9ez" id="R5v-Uy-AP6"/>
-                        <outlet property="buttonFlux" destination="hej-7N-aJh" id="vgS-he-sZ7"/>
-                        <outlet property="buttonGreen" destination="Kap-9J-Uac" id="iMf-kB-9iH"/>
-                        <outlet property="buttonLight0" destination="ROt-tX-a5g" id="KlI-f1-KnD"/>
-                        <outlet property="buttonLight1" destination="zcY-uF-V3M" id="5V7-hk-nk1"/>
-                        <outlet property="buttonLight2" destination="Cua-A9-BCl" id="NSu-Cf-P39"/>
-                        <outlet property="buttonLight3" destination="YRc-NV-0er" id="n2b-gR-jXB"/>
-                        <outlet property="buttonMovie" destination="giJ-nX-MDK" id="zZK-7h-3QU"/>
+                        <outlet property="button0" destination="giJ-nX-MDK" id="QX1-80-aRB"/>
+                        <outlet property="button1" destination="Uak-SB-GUc" id="3RA-cX-fmd"/>
+                        <outlet property="button10" destination="DDh-yt-9ez" id="5Eg-Uu-mD2"/>
+                        <outlet property="button11" destination="00L-qW-Xrd" id="u5m-9r-21r"/>
+                        <outlet property="button12" destination="U1N-th-eLZ" id="BQy-dQ-gWD"/>
+                        <outlet property="button13" destination="oX0-QV-dm8" id="8AF-2d-SMt"/>
+                        <outlet property="button14" destination="FS4-Mc-P3h" id="BEr-pE-BeK"/>
+                        <outlet property="button15" destination="WsC-6K-q2d" id="cic-vJ-seK"/>
+                        <outlet property="button2" destination="5qY-U7-zDa" id="N5I-wh-P5b"/>
+                        <outlet property="button3" destination="hej-7N-aJh" id="JGB-dy-N2c"/>
+                        <outlet property="button4" destination="IzC-VZ-Lsp" id="Q21-qp-beY"/>
+                        <outlet property="button5" destination="Kap-9J-Uac" id="GGT-ym-BjM"/>
+                        <outlet property="button6" destination="RTf-su-1lo" id="LhM-wm-74F"/>
+                        <outlet property="button7" destination="1mS-53-Ehl" id="Enp-yT-EO0"/>
+                        <outlet property="button8" destination="gvz-ie-zfK" id="uZg-fg-f51"/>
+                        <outlet property="button9" destination="lRH-Zb-qma" id="KMu-6a-bep"/>
+                        <outlet property="buttonLight0" destination="ROt-tX-a5g" id="6Xb-y2-htb"/>
+                        <outlet property="buttonLight1" destination="zcY-uF-V3M" id="xh4-aR-pfl"/>
+                        <outlet property="buttonLight2" destination="Cua-A9-BCl" id="sp2-3v-CdY"/>
+                        <outlet property="buttonLight3" destination="YRc-NV-0er" id="isu-5s-TCJ"/>
                         <outlet property="buttonOff" destination="zcr-me-XGh" id="B1V-4y-VVe"/>
                         <outlet property="buttonOn" destination="oex-Sf-W60" id="Sdl-Hk-JjB"/>
-                        <outlet property="buttonOrange" destination="gvz-ie-zfK" id="B8E-tr-D0W"/>
-                        <outlet property="buttonPink" destination="oX0-QV-dm8" id="eGT-0j-Vrw"/>
-                        <outlet property="buttonPurple" destination="lRH-Zb-qma" id="Bl1-4N-bWV"/>
-                        <outlet property="buttonRand" destination="5qY-U7-zDa" id="4Je-ee-7kh"/>
-                        <outlet property="buttonRed" destination="IzC-VZ-Lsp" id="4rI-uC-dzN"/>
-                        <outlet property="buttonSoftWhite" destination="1mS-53-Ehl" id="lf6-7C-LRd"/>
-                        <outlet property="buttonSwap" destination="Uak-SB-GUc" id="0VG-TM-lAO"/>
-                        <outlet property="buttonWhite" destination="FS4-Mc-P3h" id="EVX-jP-dAf"/>
-                        <outlet property="buttonYellow" destination="U1N-th-eLZ" id="jdy-j5-Qno"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -515,25 +516,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Blue" width="141" height="141"/>
         <image name="BrightDown" width="141" height="141"/>
         <image name="BrightUp" width="141" height="141"/>
-        <image name="Cyan" width="141" height="141"/>
         <image name="Flux" width="141" height="141"/>
-        <image name="Green" width="141" height="141"/>
         <image name="Home" width="26" height="23"/>
         <image name="Movie" width="141" height="141"/>
         <image name="Off" width="282" height="141"/>
         <image name="On" width="282" height="141"/>
-        <image name="Orange" width="141" height="141"/>
-        <image name="Pink" width="141" height="141"/>
-        <image name="Purple" width="141" height="141"/>
         <image name="Rand" width="141" height="141"/>
-        <image name="Red" width="141" height="141"/>
-        <image name="SoftWhite" width="141" height="141"/>
         <image name="Swap" width="141" height="141"/>
-        <image name="White" width="141" height="141"/>
-        <image name="Yellow" width="141" height="141"/>
         <image name="color_wheel" width="850" height="850"/>
         <image name="first" width="30" height="30"/>
     </resources>

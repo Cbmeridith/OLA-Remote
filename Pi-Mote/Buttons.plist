@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>0</key>
+	<string>SWAP</string>
+	<key>1</key>
+	<string>MOVIE</string>
+	<key>2</key>
+	<string>RANDOM</string>
+	<key>3</key>
+	<string>NIGHT</string>
+	<key>4</key>
+	<string>255000000</string>
+	<key>5</key>
+	<string>000255000</string>
+	<key>6</key>
+	<string>000000255</string>
+	<key>7</key>
+	<string>255255204</string>
+	<key>8</key>
+	<string>255139013</string>
+	<key>9</key>
+	<string>127000255</string>
+	<key>10</key>
+	<string>000190200</string>
+	<key>11</key>
+	<string>BRIGHTUP</string>
+	<key>12</key>
+	<string>255255000</string>
+	<key>13</key>
+	<string>255000255</string>
+	<key>14</key>
+	<string>255255255</string>
+	<key>15</key>
+	<string>BRIGHTDOWN</string>
+</dict>
+</plist>

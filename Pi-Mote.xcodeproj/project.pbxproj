@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		035193D41DC10497005C415B /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035193D31DC10497005C415B /* ColorPickerViewController.swift */; };
+		036FD8D71E42637900F7E498 /* Buttons.plist in Resources */ = {isa = PBXBuildFile; fileRef = 036FD8D61E42637900F7E498 /* Buttons.plist */; };
 		0398DB401DC6784200D4FE41 /* PiStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0398DB3F1DC6784200D4FE41 /* PiStream.swift */; };
 		0398DB421DC6813F00D4FE41 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0398DB411DC6813F00D4FE41 /* MainViewController.swift */; };
-		03C01FD71DC6CB6B00C51F53 /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C01FD61DC6CB6B00C51F53 /* Colors.plist */; };
 		03C01FD91DC79FDB00C51F53 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C01FD81DC79FDB00C51F53 /* SettingsViewController.swift */; };
 		03C01FDB1DC7A19300C51F53 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C01FDA1DC7A19300C51F53 /* Settings.plist */; };
 		03C9D8DE1DBE7A6A00A6745C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */; };
@@ -21,9 +21,9 @@
 
 /* Begin PBXFileReference section */
 		035193D31DC10497005C415B /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		036FD8D61E42637900F7E498 /* Buttons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Buttons.plist; sourceTree = "<group>"; };
 		0398DB3F1DC6784200D4FE41 /* PiStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiStream.swift; sourceTree = "<group>"; };
 		0398DB411DC6813F00D4FE41 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		03C01FD61DC6CB6B00C51F53 /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		03C01FD81DC79FDB00C51F53 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		03C01FDA1DC7A19300C51F53 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		03C9D8DA1DBE7A6A00A6745C /* Pi-Mote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pi-Mote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,7 +72,7 @@
 				03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */,
 				03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */,
 				03C9D8EB1DBE7A6A00A6745C /* Info.plist */,
-				03C01FD61DC6CB6B00C51F53 /* Colors.plist */,
+				036FD8D61E42637900F7E498 /* Buttons.plist */,
 				03C01FD81DC79FDB00C51F53 /* SettingsViewController.swift */,
 				03C01FDA1DC7A19300C51F53 /* Settings.plist */,
 			);
@@ -140,7 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03C01FD71DC6CB6B00C51F53 /* Colors.plist in Resources */,
+				036FD8D71E42637900F7E498 /* Buttons.plist in Resources */,
 				03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */,
 				03C9D8E71DBE7A6A00A6745C /* Assets.xcassets in Resources */,
 				03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */,
