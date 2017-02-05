@@ -13,9 +13,9 @@ class RaspberryLight(Protocol):
     lastCode = ''
 
     def connectionMade(self):
-        #self.transport.write("""connected""")
+        self.transport.write("""connected""")
         self.factory.clients.append(self)
-        print "clients are ", self.factory.clients
+        #print "clients are ", self.factory.clients
 
     def connectionLost(self, reason):
         print "connection lost ", self.factory.clients
@@ -32,7 +32,6 @@ class RaspberryLight(Protocol):
                 g = data[3] + data[4] + data[5]
                 b = data[6] + data[7] + data[8]
                 args = "Set " + r + " " + g + " " + b
-
             else:
                 #---Functions---#
                 if (data == 'OFF'):
@@ -52,6 +51,7 @@ class RaspberryLight(Protocol):
                     args = "Swap 1 2"
                 elif (data == 'TOGFADE'):
                     args = "ToggleFade"
+                #TODO: This is temporary
                 elif (data == 'MODE0'):
                     args = "Mode 0"
                 elif (data == 'MODE1'):
@@ -60,12 +60,20 @@ class RaspberryLight(Protocol):
                     args = "Mode 2"
                 elif (data == 'MODE3'):
                     args = "Mode 3"
+                elif (data == 'MODE4'):
+                    args = "Mode 4"
+                elif (data == 'MODE5'):
+                    args = "Mode 5"
+                elif (data == 'MODE6'):
+                    args = "Mode 6"
+                elif (data == 'MODE7'):
+                    args = "Mode 7"
                 elif (data == 'FLUX'):
                     args = "Flux"
 
             lastCode = data
             command = "python lights3.py " + args
-            print "Command Sent: " + command
+            #print "Command Sent: " + command
             os.system(command)
 
 factory = Factory()
@@ -73,5 +81,5 @@ factory.protocol = RaspberryLight
 factory.clients = []
 
 reactor.listenTCP(7777, factory)
-print "Looking For IOS Devices"
+#print "Looking For IOS Devices"
 reactor.run()
