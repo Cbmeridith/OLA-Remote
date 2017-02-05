@@ -44,7 +44,7 @@ class RaspberryLight(Protocol):
                     args = "BrightnessDown"
                 elif (data == 'MOVIE'):
                     args = "Movie"
-                elif (data == 'RAND'):
+                elif (data == 'RANDOM'):
                     args = "Random"
                 elif (data == 'SWAP'):
                     #Temp: Only works with 2 lights
@@ -68,8 +68,8 @@ class RaspberryLight(Protocol):
                     args = "Mode 6"
                 elif (data == 'MODE7'):
                     args = "Mode 7"
-                elif (data == 'FLUX'):
-                    args = "Flux"
+                elif (data == 'NIGHT'):
+                    args = "NightMode"
 
             lastCode = data
             command = "python lights3.py " + args
