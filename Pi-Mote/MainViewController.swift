@@ -101,7 +101,7 @@ class MainViewController: UIViewController {
         pi.openConnection()
        
         
-        var hapticStrengthString = settings?.value(forKey: "HapticStrength") as? String
+        let hapticStrengthString = settings?.value(forKey: "HapticStrength") as? String
         
         // Make sure that the string is not nil
         if let unwrappedString = hapticStrengthString {
