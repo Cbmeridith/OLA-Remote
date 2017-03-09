@@ -10,6 +10,8 @@ import UIKit
 
 class SettingsViewController: UIViewController
 {
+    let pi = PiStream()
+    
     @IBOutlet weak var buttonSave: UIButton!
     @IBOutlet weak var fieldAddress: UITextField!
     @IBOutlet weak var segmentHaptic: UISegmentedControl!
@@ -37,6 +39,14 @@ class SettingsViewController: UIViewController
         fieldAddress.text = settings?.value(forKey: "Address") as? String
         
         segmentHaptic.selectedSegmentIndex = Int((settings.value(forKey: "HapticStrength") as? String)!)!
+        
+        
+        //pi.IP = settings?.value(forKey: "Address") as? String
+        //pi.openConnection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //pi.closeConnection()
     }
     
     override func didReceiveMemoryWarning() {

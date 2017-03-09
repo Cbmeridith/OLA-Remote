@@ -16,6 +16,10 @@ class MainViewController: UIViewController {
     var settings: NSMutableDictionary!
     var buttonCodes: NSMutableDictionary!
     var buttons: [UIButton]!
+    var generator = UIImpactFeedbackGenerator()
+    var hapticStrength: Int! = 0
+    var haptic = false
+    
     
     //TODO: store color of light buttons in array for expandibility
     var lights = [false, false, false, false]
@@ -92,9 +96,37 @@ class MainViewController: UIViewController {
         buttonCodes = NSMutableDictionary(contentsOfFile: pathToButtons!)
         
         
-        
+        //load things from plists
         pi.IP = settings?.value(forKey: "Address") as? String
         pi.openConnection()
+       
+        
+        var hapticStrengthString = settings?.value(forKey: "HapticStrength") as? String
+        
+        // Make sure that the string is not nil
+        if let unwrappedString = hapticStrengthString {
+            
+            // convert String to Int
+            hapticStrength = Int(unwrappedString)
+        }
+        
+        switch hapticStrength {
+        case 0:
+            haptic = false
+        case 1:
+            generator = UIImpactFeedbackGenerator(style: .light)
+            haptic = true
+        case 2:
+            generator = UIImpactFeedbackGenerator(style: .medium)
+            haptic = true
+        case 3:
+            generator = UIImpactFeedbackGenerator(style: .heavy)
+            haptic = true
+        default:
+            haptic = true
+
+        }
+        
         
         //put all buttons in array for easy referencing
         buttons = [button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15]
@@ -226,6 +258,8 @@ class MainViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton)
     {
+        if(haptic){generator.impactOccurred()}
+        
         let pathToButtons = Bundle.main.path(forResource: "Buttons", ofType: "plist")
         let buttonCodes = NSDictionary(contentsOfFile: pathToButtons!)
         
@@ -258,6 +292,7 @@ class MainViewController: UIViewController {
             case button15: code = buttonCodes?.value(forKey: "15") as! String; break
             default: break;
         }
+        
         
         //print(code)
         pi.sendCode(code: code, length: code.characters.count)
