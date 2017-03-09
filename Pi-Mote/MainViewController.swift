@@ -12,7 +12,9 @@ class MainViewController: UIViewController {
 
     let pi = PiStream()
     var pathToSettings: String!
+    var pathToButtons: String!
     var settings: NSMutableDictionary!
+    var buttonCodes: NSMutableDictionary!
     var buttons: [UIButton]!
     
     //TODO: store color of light buttons in array for expandibility
@@ -53,11 +55,43 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        pathToSettings = Bundle.main.path(forResource: "Settings", ofType: "plist")
+        
+        let fileManager = FileManager.default
+        
+        //copy SETTINGS plist file
+        let settingsPath = Bundle.main.path(forResource: "Settings", ofType: "plist")
+        let settingsDestPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let settingsFullDestPath = NSURL(fileURLWithPath: settingsDestPath).appendingPathComponent("Settings.plist")
+        let settingsFullDestPathString = settingsFullDestPath?.path
+        pathToSettings = settingsFullDestPathString
+        
+        do{
+            try fileManager.copyItem(atPath: settingsPath!, toPath: settingsFullDestPathString!)
+        }catch{
+            print("\n")
+            print(error) // file already exists (most likely)
+        }
+
         settings = NSMutableDictionary(contentsOfFile: pathToSettings!)
         
-        let pathToButtons = Bundle.main.path(forResource: "Buttons", ofType: "plist")
-        let buttonCodes = NSDictionary(contentsOfFile: pathToButtons!)
+        
+        //copy BUTTONS plist file
+        let buttonsPath = Bundle.main.path(forResource: "Buttons", ofType: "plist")
+        let buttonsDestPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let buttonsFullDestPath = NSURL(fileURLWithPath: buttonsDestPath).appendingPathComponent("Buttons.plist")
+        let buttonsFullDestPathString = buttonsFullDestPath?.path
+        pathToButtons = buttonsFullDestPathString
+        
+        do{
+            try fileManager.copyItem(atPath: buttonsPath!, toPath: buttonsFullDestPathString!)
+        }catch{
+            print("\n")
+            print(error) // file already exists (most likely)
+        }
+        
+        buttonCodes = NSMutableDictionary(contentsOfFile: pathToButtons!)
+        
+        
         
         pi.IP = settings?.value(forKey: "Address") as? String
         pi.openConnection()

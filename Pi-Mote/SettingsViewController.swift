@@ -23,8 +23,16 @@ class SettingsViewController: UIViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        pathToSettings = Bundle.main.path(forResource: "Settings", ofType: "plist")
+        
+        //get path to Settings plist
+        let settingsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let settingsFullDestPath = NSURL(fileURLWithPath: settingsPath).appendingPathComponent("Settings.plist")
+        let settingsFullDestPathString = settingsFullDestPath?.path
+        pathToSettings = settingsFullDestPathString
+        
+        //read settings plist
         settings = NSMutableDictionary(contentsOfFile: pathToSettings!)
+
         
         fieldAddress.text = settings?.value(forKey: "Address") as? String
         
@@ -61,9 +69,11 @@ class SettingsViewController: UIViewController
         {
             settings?["Address"] = fieldAddress.text
             settings?.write(toFile: pathToSettings!, atomically: true)
+            self.view.window?.endEditing(true)
         }
         
     }
+    
     
     @IBAction func selectedSegmentChanged(_ sender: UISegmentedControl) {
         
