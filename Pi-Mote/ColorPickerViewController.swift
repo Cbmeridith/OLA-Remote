@@ -24,7 +24,10 @@ class ColorPickerViewController: UIViewController
     var wheelRadius: CGFloat!
     var xCenter: CGFloat!
     var yCenter: CGFloat!
-    
+    var lastSend = Timer.init(timeInterval: 0.25, target: self, selector: Selector("timeUp"), userInfo: nil, repeats: false)
+    var cannotSend = false
+
+
     @IBOutlet weak var fieldR: UITextField!
     @IBOutlet weak var fieldG: UITextField!
     @IBOutlet weak var fieldB: UITextField!
@@ -73,9 +76,13 @@ class ColorPickerViewController: UIViewController
         
         pi.IP = settings?.value(forKey: "Address") as? String
         pi.openConnection()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        fieldR.text = ""
+        fieldG.text = ""
+        fieldB.text = ""
         pi.closeConnection()
     }
     
@@ -174,22 +181,40 @@ class ColorPickerViewController: UIViewController
     
     func sendRGB()
     {
-        //must force r,g,b to be non-optional through if-binding
-        if let r = fieldR.text, let g = fieldG.text, let b = fieldB.text {
-            var RGB = [r, g, b]
-            var code = ""
-            for i in 0..<RGB.count
-            {
-                switch RGB[i].characters.count
+        print(cannotSend)
+        if(cannotSend){
+            print("quitting early")
+            return
+        } else {
+            print("invalidating timer")
+            lastSend.invalidate()
+            cannotSend = true
+            lastSend = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(ColorPickerViewController.timeUp), userInfo: nil, repeats: false)
+            
+            //must force r,g,b to be non-optional through if-binding
+            if let r = fieldR.text, let g = fieldG.text, let b = fieldB.text {
+                var RGB = [r, g, b]
+                var code = ""
+                for i in 0..<RGB.count
                 {
-                case 1: RGB[i] = "00\(RGB[i])"; break;
-                case 2: RGB[i] = "0\(RGB[i])"; break;
-                default: break;
+                    switch RGB[i].characters.count
+                    {
+                    case 1: RGB[i] = "00\(RGB[i])"; break;
+                    case 2: RGB[i] = "0\(RGB[i])"; break;
+                    default: break;
+                    }
+                    code = "\(code)\(RGB[i])"
                 }
-                code = "\(code)\(RGB[i])"
+                pi.sendCode(code: code, length: code.characters.count)
+                //print(code)
             }
-            pi.sendCode(code: code, length: code.characters.count)
         }
+    }
+    
+    func timeUp()
+    {
+        print("timeUp!!!")
+        cannotSend = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
@@ -261,6 +286,7 @@ class ColorPickerViewController: UIViewController
         if sender == buttonSend && isValidRGB()
         {
             sendRGB()
+            self.view.window?.endEditing(true)
         }
         
     }

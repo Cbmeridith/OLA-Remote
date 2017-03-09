@@ -101,7 +101,7 @@ class MainViewController: UIViewController {
         pi.openConnection()
        
         
-        var hapticStrengthString = settings?.value(forKey: "HapticStrength") as? String
+        let hapticStrengthString = settings?.value(forKey: "HapticStrength") as? String
         
         // Make sure that the string is not nil
         if let unwrappedString = hapticStrengthString {
@@ -256,10 +256,13 @@ class MainViewController: UIViewController {
         return "ERROR"
     }
     
+    
+    @IBAction func buttonTouched(_ sender: UIButton){
+        if(haptic){generator.impactOccurred()}
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton)
     {
-        if(haptic){generator.impactOccurred()}
-        
         let pathToButtons = Bundle.main.path(forResource: "Buttons", ofType: "plist")
         let buttonCodes = NSDictionary(contentsOfFile: pathToButtons!)
         

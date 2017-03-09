@@ -28,6 +28,7 @@
                                 <color key="backgroundColor" red="0.0037006056949875354" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="iA4-ck-fgx"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="CD0-pC-Yvb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzC-VZ-Lsp">
@@ -35,6 +36,7 @@
                                 <color key="backgroundColor" red="1" green="0.038993868052433989" blue="0.086536248760863965" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="sXV-hV-gfo"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="Y0C-G4-ziZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTf-su-1lo">
@@ -42,6 +44,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.031326614117045182" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="6Ny-uI-cdx"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="2EA-X0-1tj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRH-Zb-qma">
@@ -49,6 +52,7 @@
                                 <color key="backgroundColor" red="0.59332232227534298" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="8F0-n5-Wdw"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="XiL-0A-ZnR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvz-ie-zfK">
@@ -56,6 +60,7 @@
                                 <color key="backgroundColor" red="1" green="0.5219459233204391" blue="0.046178846180751854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="TEc-eO-NGf"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="gcT-5v-7fT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDh-yt-9ez">
@@ -63,6 +68,7 @@
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.99063824445722393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="y7B-Ak-mxa"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="uG1-aN-ogJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-QV-dm8">
@@ -70,6 +76,7 @@
                                 <color key="backgroundColor" red="0.9760972798957761" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="IZT-al-27r"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="Nbx-qa-lLK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1N-th-eLZ">
@@ -77,6 +84,7 @@
                                 <color key="backgroundColor" red="1" green="0.96954255705544834" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="rh8-pP-KPP"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="rNM-va-CXb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FS4-Mc-P3h">
@@ -85,6 +93,7 @@
                                 <state key="normal" title="SFT WHT"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="LAA-Ho-JRV"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="394-cU-Qvg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00L-qW-Xrd">
@@ -92,6 +101,7 @@
                                 <state key="normal" image="BrightUp"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="WTx-NM-57O"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="mtj-kA-O5W"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oex-Sf-W60">
@@ -99,6 +109,7 @@
                                 <state key="normal" image="On"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="DwV-rS-B1M"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="o5i-4T-rcd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcr-me-XGh">
@@ -106,6 +117,7 @@
                                 <state key="normal" image="Off"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="e2x-H1-qMm"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="qaQ-Dc-BBo"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mS-53-Ehl">
@@ -113,6 +125,7 @@
                                 <color key="backgroundColor" red="1" green="0.97042462378583716" blue="0.87950044890751611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="lJL-Mk-xqm"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="Tvx-Wb-lFx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qY-U7-zDa">
@@ -120,6 +133,7 @@
                                 <state key="normal" image="Rand"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ats-pO-TOR"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="dEc-dg-ObW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uak-SB-GUc">
@@ -127,6 +141,7 @@
                                 <state key="normal" image="Swap"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="uTz-TF-X5W"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="VZu-Ap-VQd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-nX-MDK">
@@ -134,6 +149,7 @@
                                 <state key="normal" image="Movie"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="4LQ-UV-Cbz"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="6Xt-Ep-EzE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROt-tX-a5g">
@@ -142,6 +158,7 @@
                                 <state key="normal" title="1"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="2eD-P0-OyF"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="NVf-zr-mS2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcY-uF-V3M">
@@ -149,6 +166,7 @@
                                 <state key="normal" title="2"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="5hb-oe-fnh"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="j03-DM-ky5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cua-A9-BCl">
@@ -156,6 +174,7 @@
                                 <state key="normal" title="3"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="GnE-xc-0QD"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="cVd-li-Kht"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRc-NV-0er">
@@ -163,6 +182,7 @@
                                 <state key="normal" title="All"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Vz2-S6-yD5"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="qFK-av-Bp2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WsC-6K-q2d">
@@ -170,6 +190,7 @@
                                 <state key="normal" image="BrightDown"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="F6H-co-P0S"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="BwE-4u-9ud"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hej-7N-aJh">
@@ -177,6 +198,7 @@
                                 <state key="normal" image="Flux"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ywI-Zg-oit"/>
+                                    <action selector="buttonTouched:" destination="9pv-A4-QxB" eventType="touchDown" id="vcx-Xi-niX"/>
                                 </connections>
                             </button>
                         </subviews>
