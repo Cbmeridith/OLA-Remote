@@ -24,7 +24,7 @@ class ColorPickerViewController: UIViewController
     var wheelRadius: CGFloat!
     var xCenter: CGFloat!
     var yCenter: CGFloat!
-    var lastSend = Timer.init(timeInterval: 0.25, target: self, selector: Selector("timeUp"), userInfo: nil, repeats: false)
+    var lastSend = Timer.init(timeInterval: 0.25, target: self, selector: Selector(("timeUp")), userInfo: nil, repeats: false)
     var cannotSend = false
 
 
