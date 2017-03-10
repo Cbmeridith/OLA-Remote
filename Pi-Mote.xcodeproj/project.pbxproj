@@ -15,8 +15,8 @@
 		03C01FDB1DC7A19300C51F53 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 03C01FDA1DC7A19300C51F53 /* Settings.plist */; };
 		03C9D8DE1DBE7A6A00A6745C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */; };
 		03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E31DBE7A6A00A6745C /* Main.storyboard */; };
-		03C9D8E71DBE7A6A00A6745C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */; };
 		03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */; };
+		F59AD95C1E7263DF006B2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59AD95B1E7263DF006B2B65 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,9 @@
 		03C9D8DA1DBE7A6A00A6745C /* Pi-Mote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pi-Mote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03C9D8E41DBE7A6A00A6745C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C9D8E91DBE7A6A00A6745C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03C9D8EB1DBE7A6A00A6745C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F59AD95B1E7263DF006B2B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 				03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */,
 				03C9D8E31DBE7A6A00A6745C /* Main.storyboard */,
 				035193D31DC10497005C415B /* ColorPickerViewController.swift */,
-				03C9D8E61DBE7A6A00A6745C /* Assets.xcassets */,
+				F59AD95B1E7263DF006B2B65 /* Assets.xcassets */,
 				03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */,
 				03C9D8EB1DBE7A6A00A6745C /* Info.plist */,
 				036FD8D61E42637900F7E498 /* Buttons.plist */,
@@ -142,9 +142,9 @@
 			files = (
 				036FD8D71E42637900F7E498 /* Buttons.plist in Resources */,
 				03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */,
-				03C9D8E71DBE7A6A00A6745C /* Assets.xcassets in Resources */,
 				03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */,
 				03C01FDB1DC7A19300C51F53 /* Settings.plist in Resources */,
+				F59AD95C1E7263DF006B2B65 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +291,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,7 +307,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -256,10 +256,13 @@ class MainViewController: UIViewController {
         return "ERROR"
     }
     
+    
+    @IBAction func buttonTouched(_ sender: UIButton){
+        if(haptic){generator.impactOccurred()}
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton)
     {
-        if(haptic){generator.impactOccurred()}
-        
         let pathToButtons = Bundle.main.path(forResource: "Buttons", ofType: "plist")
         let buttonCodes = NSDictionary(contentsOfFile: pathToButtons!)
         
