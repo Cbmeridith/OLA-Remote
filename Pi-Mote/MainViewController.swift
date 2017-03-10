@@ -150,7 +150,17 @@ class MainViewController: UIViewController {
                 endIndex = currentCode.index(startIndex, offsetBy: 3)
                 let b = CGFloat(Float(currentCode.substring(with: startIndex ..< endIndex))!)
                 
-                buttons[i].backgroundColor = UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
+                
+                // the *# is to display closer to what the lights show
+                // d is used to maintain lower mult of Green and Blue to show more variations of Cyan
+                // if enough Red (>200) show full red
+                var d1: CGFloat = 1.0
+                var d2: CGFloat = 2.5
+                if r < 235{
+                    d1 = 0.75
+                    d2 = 1.5
+                }
+                buttons[i].backgroundColor = UIColor(red: r/255 * d1, green: g/255 * d2, blue: b/255 * d2, alpha: 1)  // the *2 is to display closer to what the lights show
                 
                 //print("\(r), \(g), \(b)")
             }

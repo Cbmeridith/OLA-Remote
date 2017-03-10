@@ -161,9 +161,9 @@ class ColorPickerViewController: UIViewController
         let d = CGFloat(50) // adjustment factor
         var horizontalDist = CGFloat(0)
         if(position.x<wheelCenter.x) { // left size
-            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x + d))-(wheelCenter.x + d)+d)
+            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x - d))-(wheelCenter.x + d)+d)
         } else { // right side
-            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x - d))+(wheelCenter.x - d))
+            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x - d))-(wheelCenter.x - 2.25*d))
         }
         
         
@@ -271,7 +271,16 @@ class ColorPickerViewController: UIViewController
                 fieldG.text = String(RGB[1])
                 fieldB.text = String(RGB[2])
                 
-                let currentColor = UIColor(red: CGFloat(RGB[0]) / 255, green: CGFloat(RGB[1]) / 255, blue: CGFloat(RGB[2]) / 255, alpha: 1)
+                // the *# is to display closer to what the lights show
+                // d is used to maintain lower mult of Green and Blue to show more variations of Cyan
+                // if enough Red (>200) show full red
+                var d1: CGFloat = 1.0
+                var d2: CGFloat = 2.5
+                if Int(RGB[0]) < 235{
+                    d1 = 0.75
+                    d2 = 1.5
+                }
+                let currentColor = UIColor(red: CGFloat(RGB[0]) / 255 * d1, green: CGFloat(RGB[1]) / 255 * d2, blue: CGFloat(RGB[2]) / 255 * d2, alpha: 1)
                 
                 zoom.position.x = position.x
                 zoom.position.y = position.y - (zoomRadius * 2)
