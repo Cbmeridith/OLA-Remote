@@ -154,7 +154,18 @@ class ColorPickerViewController: UIViewController
     {
         let thirdPoint = CGPoint(x: position.x, y: wheelCenter.y) //Point right angle is on
         let verticalDist = abs(thirdPoint.y - position.y)
-        let horizontalDist = abs(thirdPoint.x - wheelCenter.x)
+        //let horizontalDist = abs(thirdPoint.x - wheelCenter.x) // original
+        
+        
+        // adjusted for lights accuracy
+        let d = CGFloat(50) // adjustment factor
+        var horizontalDist = CGFloat(0)
+        if(position.x<wheelCenter.x) { // left size
+            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x + d))-(wheelCenter.x + d)+d)
+        } else { // right side
+            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x - d))+(wheelCenter.x - d))
+        }
+        
         
         let hue = getHue(position: position, thirdPoint: thirdPoint)
         let saturation = sqrt(pow(horizontalDist, 2) + pow(verticalDist,2)) / wheelRadius
@@ -197,6 +208,11 @@ class ColorPickerViewController: UIViewController
                 var code = ""
                 for i in 0..<RGB.count
                 {
+                    // remove negatives
+                    if RGB[i].contains("-"){
+                        RGB[i] = "000"
+                    }
+                    // pad to 3 chars
                     switch RGB[i].characters.count
                     {
                     case 1: RGB[i] = "00\(RGB[i])"; break;
@@ -225,6 +241,9 @@ class ColorPickerViewController: UIViewController
             if inCircle(position: position)
             {
                 let RGB = calculateRGB(position: position)
+                
+                
+                
                 fieldR.text = String(RGB[0])
                 fieldG.text = String(RGB[1])
                 fieldB.text = String(RGB[2])
@@ -242,7 +261,11 @@ class ColorPickerViewController: UIViewController
             let position = touch.location(in: self.view)
             if inCircle(position: position)
             {
-                let RGB = calculateRGB(position: position)
+                var RGB = calculateRGB(position: position)
+                
+                if RGB[0] < 0 {RGB[0] = 0}
+                if RGB[1] < 0 {RGB[1] = 0}
+                if RGB[2] < 0 {RGB[2] = 0}
                 
                 fieldR.text = String(RGB[0])
                 fieldG.text = String(RGB[1])
