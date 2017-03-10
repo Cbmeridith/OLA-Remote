@@ -421,7 +421,7 @@
                             <constraint firstItem="Bof-KG-4fk" firstAttribute="width" secondItem="BpG-vy-yFG" secondAttribute="width" id="rv3-Z9-5BV"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Color Picker" image="first" selectedImage="first" id="cJJ-xO-QMf"/>
+                    <tabBarItem key="tabBarItem" title="Color Picker" image="Picker" selectedImage="Picker" id="cJJ-xO-QMf"/>
                     <connections>
                         <outlet property="buttonSend" destination="qCp-Pa-Gfv" id="aqC-vx-MRO"/>
                         <outlet property="fieldB" destination="Bof-KG-4fk" id="dWS-uO-cbm"/>
@@ -504,7 +504,7 @@
                             <constraint firstItem="dMK-Zl-YIf" firstAttribute="centerY" secondItem="CbT-aZ-4FE" secondAttribute="centerY" id="uZF-xK-5U2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="first" selectedImage="first" id="Zmx-cC-H5l"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Gear" selectedImage="Gear" id="Zmx-cC-H5l"/>
                     <connections>
                         <outlet property="buttonSave" destination="M1R-kx-Dvz" id="aSe-gD-ZyE"/>
                         <outlet property="fieldAddress" destination="d4a-ao-mqz" id="Cwc-bS-lhK"/>
@@ -541,13 +541,14 @@
         <image name="BrightDown" width="141" height="141"/>
         <image name="BrightUp" width="141" height="141"/>
         <image name="Flux" width="141" height="141"/>
-        <image name="Home" width="26" height="23"/>
+        <image name="Gear" width="30" height="30"/>
+        <image name="Home" width="30" height="30"/>
         <image name="Movie" width="141" height="141"/>
         <image name="Off" width="282" height="141"/>
         <image name="On" width="282" height="141"/>
+        <image name="Picker" width="30" height="30"/>
         <image name="Rand" width="141" height="141"/>
         <image name="Swap" width="141" height="141"/>
         <image name="color_wheel" width="850" height="850"/>
-        <image name="first" width="30" height="30"/>
     </resources>
 </document>
