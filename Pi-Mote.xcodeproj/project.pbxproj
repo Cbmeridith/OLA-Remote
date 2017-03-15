@@ -16,7 +16,7 @@
 		03C9D8DE1DBE7A6A00A6745C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */; };
 		03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E31DBE7A6A00A6745C /* Main.storyboard */; };
 		03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */; };
-		F59AD95C1E7263DF006B2B65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F59AD95B1E7263DF006B2B65 /* Assets.xcassets */; };
+		F5D0F3681E78E9FA004D42BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5D0F3671E78E9FA004D42BF /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		03C9D8E41DBE7A6A00A6745C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03C9D8E91DBE7A6A00A6745C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03C9D8EB1DBE7A6A00A6745C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F59AD95B1E7263DF006B2B65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5D0F3671E78E9FA004D42BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 				03C9D8DD1DBE7A6A00A6745C /* AppDelegate.swift */,
 				03C9D8E31DBE7A6A00A6745C /* Main.storyboard */,
 				035193D31DC10497005C415B /* ColorPickerViewController.swift */,
-				F59AD95B1E7263DF006B2B65 /* Assets.xcassets */,
+				F5D0F3671E78E9FA004D42BF /* Assets.xcassets */,
 				03C9D8E81DBE7A6A00A6745C /* LaunchScreen.storyboard */,
 				03C9D8EB1DBE7A6A00A6745C /* Info.plist */,
 				036FD8D61E42637900F7E498 /* Buttons.plist */,
@@ -144,7 +144,7 @@
 				03C9D8EA1DBE7A6A00A6745C /* LaunchScreen.storyboard in Resources */,
 				03C9D8E51DBE7A6A00A6745C /* Main.storyboard in Resources */,
 				03C01FDB1DC7A19300C51F53 /* Settings.plist in Resources */,
-				F59AD95C1E7263DF006B2B65 /* Assets.xcassets in Resources */,
+				F5D0F3681E78E9FA004D42BF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
