@@ -13,12 +13,17 @@ class SettingsViewController: UIViewController
     let pi = PiStream()
     
     @IBOutlet weak var buttonSave: UIButton!
+    @IBOutlet weak var fadeToggle: UIButton!
     @IBOutlet weak var fieldAddress: UITextField!
     @IBOutlet weak var segmentHaptic: UISegmentedControl!
     @IBOutlet weak var labelHaptic: UILabel!
     
     var pathToSettings: String!
     var settings: NSMutableDictionary!
+    var code = ""
+    var generator = UIImpactFeedbackGenerator()
+    var hapticStrength: Int! = 0
+    var haptic = false
     
     override func viewDidLoad() {
         buttonSave.isHidden = true
@@ -38,15 +43,43 @@ class SettingsViewController: UIViewController
         
         fieldAddress.text = settings?.value(forKey: "Address") as? String
         
+        updateHaptic()
+        
+        pi.IP = settings?.value(forKey: "Address") as? String
+        pi.openConnection()
+    }
+    
+    func updateHaptic(){
         segmentHaptic.selectedSegmentIndex = Int((settings.value(forKey: "HapticStrength") as? String)!)!
         
+        let hapticStrengthString = settings?.value(forKey: "HapticStrength") as? String
         
-        //pi.IP = settings?.value(forKey: "Address") as? String
-        //pi.openConnection()
+        // Make sure that the string is not nil
+        if let unwrappedString = hapticStrengthString {
+            
+            // convert String to Int
+            hapticStrength = Int(unwrappedString)
+        }
+        
+        switch hapticStrength {
+        case 0:
+            haptic = false
+        case 1:
+            generator = UIImpactFeedbackGenerator(style: .light)
+            haptic = true
+        case 2:
+            generator = UIImpactFeedbackGenerator(style: .medium)
+            haptic = true
+        case 3:
+            generator = UIImpactFeedbackGenerator(style: .heavy)
+            haptic = true
+        default:
+            haptic = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //pi.closeConnection()
+        pi.closeConnection()
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,6 +106,11 @@ class SettingsViewController: UIViewController
             
         }
     }
+    
+    @IBAction func buttonTouched(_ sender: UIButton){
+        if(haptic){generator.impactOccurred()}
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         if sender == buttonSave
@@ -80,6 +118,12 @@ class SettingsViewController: UIViewController
             settings?["Address"] = fieldAddress.text
             settings?.write(toFile: pathToSettings!, atomically: true)
             self.view.window?.endEditing(true)
+        }
+        
+        if sender == fadeToggle
+        {
+            code = "TOGFADE"
+            pi.sendCode(code: code, length: code.characters.count)
         }
         
     }
@@ -91,6 +135,10 @@ class SettingsViewController: UIViewController
         {
             settings?["HapticStrength"] = String(segmentHaptic.selectedSegmentIndex)
             settings?.write(toFile: pathToSettings!, atomically: true)
+            
+            updateHaptic()
+            
+            if(haptic){generator.impactOccurred()}
         }
         
     }

@@ -44,14 +44,14 @@ class ColorPickerViewController: UIViewController
         
         wheelCenter = CGPoint(x: xCenter, y: yCenter)
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: xCenter,y: yCenter), radius: wheelRadius, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: xCenter,y: yCenter), radius: wheelRadius, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         wheelOutline = CAShapeLayer()
         wheelOutline.path = circlePath.cgPath
         wheelOutline.fillColor = UIColor.clear.cgColor
         wheelOutline.strokeColor = UIColor.black.cgColor
         wheelOutline.lineWidth = 3.0
         
-        let zoomPath = UIBezierPath(arcCenter: CGPoint(x: 0,y: 0), radius: zoomRadius, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        let zoomPath = UIBezierPath(arcCenter: CGPoint(x: 0,y: 0), radius: zoomRadius, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         zoom = CAShapeLayer()
         zoom.path = zoomPath.cgPath
         zoom.fillColor = UIColor.clear.cgColor
@@ -106,19 +106,19 @@ class ColorPickerViewController: UIViewController
         let horizontalDist = abs(thirdPoint.x - wheelCenter.x)
         if position.x >= wheelCenter.x && position.y <= wheelCenter.y //first quad
         {
-            return atan(verticalDist / horizontalDist) * CGFloat(180/M_PI)
+            return atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi)
         }
         else if position.x < wheelCenter.x && position.y <= wheelCenter.y //second quad
         {
-            return 180 - (atan(verticalDist / horizontalDist) * CGFloat(180/M_PI))
+            return 180 - (atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi))
         }
         else if position.x < wheelCenter.x && position.y > wheelCenter.y // third quad
         {
-            return 180 + (atan(verticalDist / horizontalDist) * CGFloat(180/M_PI))
+            return 180 + (atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi))
         }
         else //forth quad
         {
-            return 360 - (atan(verticalDist / horizontalDist) * CGFloat(180/M_PI))
+            return 360 - (atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi))
         }
     }
 
@@ -227,7 +227,7 @@ class ColorPickerViewController: UIViewController
         }
     }
     
-    func timeUp()
+    @objc func timeUp()
     {
         print("timeUp!!!")
         cannotSend = false

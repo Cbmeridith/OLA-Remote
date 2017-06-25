@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12100" systemVersion="16E175b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16G8c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12072"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -468,12 +468,17 @@
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="buttonPressed:" destination="wSw-Q4-Oaa" eventType="touchUpInside" id="KRx-Ql-Ny7"/>
+                                    <action selector="buttonTouched:" destination="wSw-Q4-Oaa" eventType="touchDown" id="HS6-x8-vd9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-vd-CiE">
                                 <rect key="frame" x="139" y="188" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="FADETOGGLE"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="wSw-Q4-Oaa" eventType="touchUpInside" id="Jeg-j9-H78"/>
+                                    <action selector="buttonTouched:" destination="wSw-Q4-Oaa" eventType="touchDown" id="xqj-mL-86v"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dMK-Zl-YIf">
                                 <rect key="frame" x="16" y="319" width="343" height="29"/>
@@ -507,6 +512,7 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="Gear" selectedImage="Gear" id="Zmx-cC-H5l"/>
                     <connections>
                         <outlet property="buttonSave" destination="M1R-kx-Dvz" id="aSe-gD-ZyE"/>
+                        <outlet property="fadeToggle" destination="MJJ-vd-CiE" id="TVZ-e2-09J"/>
                         <outlet property="fieldAddress" destination="d4a-ao-mqz" id="Cwc-bS-lhK"/>
                         <outlet property="labelHaptic" destination="cxL-6E-ul4" id="C1g-3U-MHP"/>
                         <outlet property="segmentHaptic" destination="dMK-Zl-YIf" id="eAx-jv-YOM"/>
