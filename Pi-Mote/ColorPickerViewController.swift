@@ -44,14 +44,14 @@ class ColorPickerViewController: UIViewController
         
         wheelCenter = CGPoint(x: xCenter, y: yCenter)
         
-        let circlePath = UIBezierPath(arcCenter: CGPoint(x: xCenter,y: yCenter), radius: wheelRadius, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        let circlePath = UIBezierPath(arcCenter: CGPoint(x: xCenter,y: yCenter), radius: wheelRadius, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         wheelOutline = CAShapeLayer()
         wheelOutline.path = circlePath.cgPath
         wheelOutline.fillColor = UIColor.clear.cgColor
         wheelOutline.strokeColor = UIColor.black.cgColor
         wheelOutline.lineWidth = 3.0
         
-        let zoomPath = UIBezierPath(arcCenter: CGPoint(x: 0,y: 0), radius: zoomRadius, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
+        let zoomPath = UIBezierPath(arcCenter: CGPoint(x: 0,y: 0), radius: zoomRadius, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         zoom = CAShapeLayer()
         zoom.path = zoomPath.cgPath
         zoom.fillColor = UIColor.clear.cgColor
@@ -106,19 +106,19 @@ class ColorPickerViewController: UIViewController
         let horizontalDist = abs(thirdPoint.x - wheelCenter.x)
         if position.x >= wheelCenter.x && position.y <= wheelCenter.y //first quad
         {
-            return atan(verticalDist / horizontalDist) * CGFloat(180/M_PI)
+            return atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi)
         }
         else if position.x < wheelCenter.x && position.y <= wheelCenter.y //second quad
         {
-            return 180 - (atan(verticalDist / horizontalDist) * CGFloat(180/M_PI))
+            return 180 - (atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi))
         }
         else if position.x < wheelCenter.x && position.y > wheelCenter.y // third quad
         {
-            return 180 + (atan(verticalDist / horizontalDist) * CGFloat(180/M_PI))
+            return 180 + (atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi))
         }
         else //forth quad
         {
-            return 360 - (atan(verticalDist / horizontalDist) * CGFloat(180/M_PI))
+            return 360 - (atan(verticalDist / horizontalDist) * CGFloat(180/Double.pi))
         }
     }
 
@@ -154,7 +154,18 @@ class ColorPickerViewController: UIViewController
     {
         let thirdPoint = CGPoint(x: position.x, y: wheelCenter.y) //Point right angle is on
         let verticalDist = abs(thirdPoint.y - position.y)
-        let horizontalDist = abs(thirdPoint.x - wheelCenter.x)
+        //let horizontalDist = abs(thirdPoint.x - wheelCenter.x) // original
+        
+        
+        // adjusted for lights accuracy
+        let d = CGFloat(50) // adjustment factor
+        var horizontalDist = CGFloat(0)
+        if(position.x<wheelCenter.x) { // left size
+            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x - d))-(wheelCenter.x + d)+d)
+        } else { // right side
+            horizontalDist = abs(((position.x / wheelCenter.x) * (wheelCenter.x - d))-(wheelCenter.x - 2.25*d))
+        }
+        
         
         let hue = getHue(position: position, thirdPoint: thirdPoint)
         let saturation = sqrt(pow(horizontalDist, 2) + pow(verticalDist,2)) / wheelRadius
@@ -197,6 +208,11 @@ class ColorPickerViewController: UIViewController
                 var code = ""
                 for i in 0..<RGB.count
                 {
+                    // remove negatives
+                    if RGB[i].contains("-"){
+                        RGB[i] = "000"
+                    }
+                    // pad to 3 chars
                     switch RGB[i].characters.count
                     {
                     case 1: RGB[i] = "00\(RGB[i])"; break;
@@ -211,7 +227,7 @@ class ColorPickerViewController: UIViewController
         }
     }
     
-    func timeUp()
+    @objc func timeUp()
     {
         print("timeUp!!!")
         cannotSend = false
@@ -225,6 +241,9 @@ class ColorPickerViewController: UIViewController
             if inCircle(position: position)
             {
                 let RGB = calculateRGB(position: position)
+                
+                
+                
                 fieldR.text = String(RGB[0])
                 fieldG.text = String(RGB[1])
                 fieldB.text = String(RGB[2])
@@ -242,13 +261,26 @@ class ColorPickerViewController: UIViewController
             let position = touch.location(in: self.view)
             if inCircle(position: position)
             {
-                let RGB = calculateRGB(position: position)
+                var RGB = calculateRGB(position: position)
+                
+                if RGB[0] < 0 {RGB[0] = 0}
+                if RGB[1] < 0 {RGB[1] = 0}
+                if RGB[2] < 0 {RGB[2] = 0}
                 
                 fieldR.text = String(RGB[0])
                 fieldG.text = String(RGB[1])
                 fieldB.text = String(RGB[2])
                 
-                let currentColor = UIColor(red: CGFloat(RGB[0]) / 255, green: CGFloat(RGB[1]) / 255, blue: CGFloat(RGB[2]) / 255, alpha: 1)
+                // the *# is to display closer to what the lights show
+                // d is used to maintain lower mult of Green and Blue to show more variations of Cyan
+                // if enough Red (>200) show full red
+                var d1: CGFloat = 1.0
+                var d2: CGFloat = 2.5
+                if Int(RGB[0]) < 235{
+                    d1 = 0.75
+                    d2 = 1.5
+                }
+                let currentColor = UIColor(red: CGFloat(RGB[0]) / 255 * d1, green: CGFloat(RGB[1]) / 255 * d2, blue: CGFloat(RGB[2]) / 255 * d2, alpha: 1)
                 
                 zoom.position.x = position.x
                 zoom.position.y = position.y - (zoomRadius * 2)

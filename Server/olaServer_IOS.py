@@ -36,8 +36,14 @@ class RaspberryLight(Protocol):
                 #---Functions---#
                 if (data == 'OFF'):
                     args = "Off"
+                elif (data == 'ALLOFF'):
+                    args = "AllOff"
                 elif (data == 'ON'):
                     args = "On"
+                elif (data == 'ALLON'):
+                    args = "AllOn"
+                elif (data == 'ALLONFULL'):
+                    args = "AllOnFull"
                 elif (data == 'BRIGHTUP'):
                     args = "BrightnessUp"
                 elif (data == 'BRIGHTDOWN'):
@@ -50,7 +56,7 @@ class RaspberryLight(Protocol):
                     #Temp: Only works with 2 lights
                     args = "Swap 1 2"
                 elif (data == 'TOGFADE'):
-                    args = "ToggleFade"
+                    args = "Fade"
                 #TODO: This is temporary
                 elif (data == 'MODE0'):
                     args = "Mode 0"

@@ -8,12 +8,29 @@
 
 import UIKit
 
+let pi = PiStream()
+var pathToSettings: String!
+var settings: NSMutableDictionary!
+
+enum ShortcutIdentifier: String {
+    case LightsOn
+    case LightsOff
+
+    init?(identifier: String) {
+        guard let shortIdentifier = identifier.components(separatedBy: ".").last else {
+            return nil
+        }
+        self.init(rawValue: shortIdentifier)
+    }
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -41,6 +58,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    // MARK: Shortcut Handler Methods
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(shouldPerformActionFor(shortcutItem: shortcutItem))
+    }
+    
+    private func shouldPerformActionFor(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        let shortcutType = shortcutItem.type
+        //print(shortcutType)
+        guard let shortcutIdentifier = ShortcutIdentifier(identifier: shortcutType) else {
+            return false
+        }
+        return preformActionFor(shortcutIdentifier: shortcutIdentifier)
+    }
+    
+    private func preformActionFor(shortcutIdentifier: ShortcutIdentifier) -> Bool {
+        //print(shortcutIdentifier)
+        
+        let settingsDestPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let settingsFullDestPath = NSURL(fileURLWithPath: settingsDestPath).appendingPathComponent("Settings.plist")
+        let settingsFullDestPathString = settingsFullDestPath?.path
+        pathToSettings = settingsFullDestPathString
+        settings = NSMutableDictionary(contentsOfFile: pathToSettings!)
+        
+        //load things from plists
+        pi.IP = settings?.value(forKey: "Address") as? String
+        pi.openConnection()
+        
+        switch shortcutIdentifier {
+            case .LightsOn:
+                print("AllOn sent from lock screen")
+                pi.sendCode(code: "ALLON", length: 5)
+                pi.closeConnection()
+                return true
+            case .LightsOff:
+                print("AllOff sent from lock screen")
+                pi.sendCode(code: "ALLOFF", length: 6)
+                pi.closeConnection()
+                return true
+        }
+    }
 
 }
 
